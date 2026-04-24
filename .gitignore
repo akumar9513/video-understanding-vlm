@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+bmw_env/
+
+# Model weights (auto-downloaded on run)
+*.pt
+
+# Mac system files
+.DS_Store
+
+# Large video files
+*.mp4
+
+# Output frames (generated on run)
+Task2_Frame_Analysis/output_frames/
+
+# Generated output files
+Task1_Video_Captioning/task1_captions.txt
+Task2_Frame_Analysis/detection_report.csv
