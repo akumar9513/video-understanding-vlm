@@ -39,15 +39,24 @@ This ensures the script runs on Mac, Windows, and Linux without any manual confi
 **float32 precision**
 Used instead of float16 for maximum compatibility across all platforms including CPU-only machines.
 
+**Absolute output path**
+Output file `task1_captions.txt` is saved using an absolute path derived from the script location — ensures the file is always saved in the correct folder regardless of where the script is called from.
+
 ---
 
 ## Results
 
-All 8 sampled frames produced the caption:
+All 16 sampled frames produced the caption:
 > "a city street filled with lots of traffic"
 
+One frame at 300 produced:
+> "a busy city street filled with lots of traffic"
+
 **Video Summary:**
-The video predominantly features: city, street, filled, traffic, lots. Across 8 sampled frames the scene consistently depicts an urban traffic environment with various moving subjects.
+The video predominantly features: city, street, filled, traffic, lots. Across 16 sampled frames the scene consistently depicts an urban traffic environment with various moving subjects.
+
+**Output file:** `task1_captions.txt`
+Contains all frame captions and the video-level summary.
 
 ---
 

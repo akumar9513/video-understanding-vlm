@@ -20,3 +20,4 @@ Task2_Frame_Analysis/output_frames/
 # Generated output files
 Task1_Video_Captioning/task1_captions.txt
 Task2_Frame_Analysis/detection_report.csv
+.env

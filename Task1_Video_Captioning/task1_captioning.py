@@ -4,6 +4,7 @@ Author: Anil Kumar
 Video URL: https://www.pexels.com/video/busy-city-highway-traffic-at-rush-hour-31115112/
 """
 
+from itertools import count
 import cv2
 import torch
 import os
@@ -14,10 +15,12 @@ from collections import Counter
 # ─────────────────────────────────────────────
 # CONFIGURATION
 # ─────────────────────────────────────────────
-VIDEO_PATH     = "../../traffic_video.mp4"  # video sits in _Task root
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+VIDEO_PATH = os.path.join(BASE_DIR,"..","traffic_video.mp4")
 FRAME_INTERVAL = 30                          # extract one frame every 30 frames
-MAX_FRAMES     = 8                           # max frames to caption
-OUTPUT_FILE    = "task1_captions.txt"        # results saved here
+MAX_FRAMES     = None                        # max frames to caption
+BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_FILE = os.path.join(BASE_DIR, "task1_captions.txt")       # results saved here
 
 # ─────────────────────────────────────────────
 # STEP 1: Extract Frames
@@ -38,7 +41,7 @@ def extract_frames(video_path, interval, max_frames):
 
     print(f"[INFO] Extracting frames every {interval} frames...")
 
-    while cap.isOpened() and len(frames) < max_frames:
+    while cap.isOpened() and (MAX_FRAMES is None or count < MAX_FRAMES):
         ret, frame = cap.read()
         if not ret:
             break

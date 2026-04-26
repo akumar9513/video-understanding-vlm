@@ -4,6 +4,7 @@ Author: Anil Kumar
 Video URL: https://www.pexels.com/video/busy-city-highway-traffic-at-rush-hour-31115112/
 """
 
+from itertools import count
 import cv2
 import os
 import csv
@@ -14,11 +15,14 @@ from collections import defaultdict
 # ─────────────────────────────────────────────
 # CONFIGURATION
 # ─────────────────────────────────────────────
-VIDEO_PATH     = "../../traffic_video.mp4"  # same video as Task 1
+import os
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+VIDEO_PATH = os.path.join(BASE_DIR, "..", "traffic_video.mp4")
 FRAME_INTERVAL = 30                          # extract every 30 frames
-MAX_FRAMES     = 8                           # same as Task 1
-OUTPUT_DIR     = "output_frames"             # folder to save annotated images
-REPORT_CSV     = "detection_report.csv"      # summary CSV
+MAX_FRAMES     = None                        # same as Task 1
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(BASE_DIR, "output_frames")
+REPORT_CSV = os.path.join(BASE_DIR, "detection_report.csv")
 CONFIDENCE     = 0.4                         # minimum detection confidence
 
 # ─────────────────────────────────────────────
@@ -49,7 +53,7 @@ def extract_and_preprocess(video_path, interval, max_frames):
 
     print(f"[INFO] Extracting and preprocessing frames...")
 
-    while cap.isOpened() and len(frames) < max_frames:
+    while cap.isOpened() and (MAX_FRAMES is None or count < MAX_FRAMES):
         ret, frame = cap.read()
         if not ret:
             break
